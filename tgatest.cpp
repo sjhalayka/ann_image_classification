@@ -216,13 +216,15 @@ int main(int argc,char **argv)
     HiddenLayers.push_back(sqrt(image_width*image_height*bytes_per_pixel*output_bits));
     FFBPNeuralNet NNet(image_width*image_height*bytes_per_pixel, HiddenLayers, output_bits);
     
+    NNet.SetLearningRate(0.1);
+    
+    
     double max_error_rate = 0.01;
     long unsigned int max_training_sessions = 1000;
     
     double error_rate = 0.0;
     long unsigned int num_training_sessions = 0;
     
-    bool use_mse_error = false;
 
 
     
@@ -258,6 +260,7 @@ int main(int argc,char **argv)
             data.push_back(peacock_noise_img.pixels[i].g / 255.0);
             data.push_back(peacock_noise_img.pixels[i].b / 255.0);
             data.push_back(peacock_noise_img.pixels[i].a / 255.0);
+            
         }
         
         NNet.FeedForward(data);
@@ -266,7 +269,7 @@ int main(int argc,char **argv)
         data.push_back(0.0);
         data.push_back(0.0);
         
-        error_rate = NNet.BackPropagate(data, use_mse_error);
+        error_rate = NNet.BackPropagate(data);
 
 
         data.clear();
@@ -285,7 +288,7 @@ int main(int argc,char **argv)
         data.push_back(1.0);
         data.push_back(0.0);
         
-        error_rate += NNet.BackPropagate(data, use_mse_error);
+        error_rate += NNet.BackPropagate(data);
         
 
         data.clear();
@@ -304,7 +307,7 @@ int main(int argc,char **argv)
         data.push_back(0.0);
         data.push_back(1.0);
         
-        error_rate += NNet.BackPropagate(data, use_mse_error);
+        error_rate += NNet.BackPropagate(data);
         
  
         data.clear();
@@ -323,7 +326,7 @@ int main(int argc,char **argv)
         data.push_back(1.0);
         data.push_back(1.0);
         
-        error_rate += NNet.BackPropagate(data, use_mse_error);
+        error_rate += NNet.BackPropagate(data);
  
         
         error_rate /= 4.0;
@@ -331,7 +334,7 @@ int main(int argc,char **argv)
 
         num_training_sessions++;
 
-        cout << num_training_sessions << " " << error_rate << endl;
+        cout << num_training_sessions << " " << error_rate << endl << endl;
     }
     while(error_rate >= max_error_rate && num_training_sessions < max_training_sessions);
     

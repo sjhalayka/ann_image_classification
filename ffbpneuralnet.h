@@ -25,7 +25,7 @@ public:
 	size_t GetMaximumOutputNeuron(void) const;
 
 	// provide desired outputs, which will be compared against the currently set output values
-	double BackPropagate(const vector<double> &src_desired_outputs, const bool &provide_mse_error_rate = true);
+	double BackPropagate(const vector<double> &src_desired_outputs);
 
 	// layer manipulation functions
 	size_t GetNumInputLayerNeurons(void) const;
