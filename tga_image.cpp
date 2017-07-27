@@ -1,3 +1,5 @@
+// http://www.paulbourke.net/dataformats/tga/
+
 #include "tga_image.h"
 
 void tga_32bit_image::MergeBytes(pixel *pxl, unsigned char *p, int bytes)

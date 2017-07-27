@@ -48,8 +48,6 @@ int main(int argc,char **argv)
     double error_rate = 0.0;
     long unsigned int num_training_sessions = 0;
     
-
-    
     
     // train network until the error rate goes below the maximum error rate
     // or we reach the maximum number of training sessions (which could be considered as "giving up")
@@ -161,9 +159,11 @@ int main(int argc,char **argv)
     while(error_rate >= max_error_rate && num_training_sessions < max_training_sessions);
     
     NNet.SaveToFile("network.bin");
+ 
+    
     FFBPNeuralNet NNet2("network.bin");
     
-    size_t num_tests = 5;
+    size_t num_tests = 100;
     size_t num_successes = 0;
     size_t num_failures = 0;
     
@@ -266,6 +266,8 @@ int main(int argc,char **argv)
             num_successes++;
         else
             num_failures++;
+        
+        cout << i + 1 << endl;
     }
 
     cout << "Success rate: " << 100.0*static_cast<double>(num_successes) / static_cast<double>(num_tests*4) << "%" << endl;

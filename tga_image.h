@@ -1,3 +1,5 @@
+// http://www.paulbourke.net/dataformats/tga/
+
 #include <cstdio>
 #include <cstdlib>
 #include <cmath>
