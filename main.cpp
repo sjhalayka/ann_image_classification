@@ -37,6 +37,7 @@ int main(int argc,char **argv)
     
     vector<size_t> HiddenLayers;
     HiddenLayers.push_back(sqrt(image_width*image_height*bytes_per_pixel*output_bits));
+
     FFBPNeuralNet NNet(image_width*image_height*bytes_per_pixel, HiddenLayers, output_bits);
     
     NNet.SetLearningRate(0.1);
@@ -48,7 +49,7 @@ int main(int argc,char **argv)
     double error_rate = 0.0;
     long unsigned int num_training_sessions = 0;
     
-    
+ /*
     // train network until the error rate goes below the maximum error rate
     // or we reach the maximum number of training sessions (which could be considered as "giving up")
     do
@@ -159,7 +160,7 @@ int main(int argc,char **argv)
     while(error_rate >= max_error_rate && num_training_sessions < max_training_sessions);
     
     NNet.SaveToFile("network.bin");
- 
+ */
     
     FFBPNeuralNet NNet2("network.bin");
     
@@ -202,7 +203,7 @@ int main(int argc,char **argv)
         NNet2.FeedForward(data);
         NNet2.GetOutputValues(data);
 
-        if(floor(data[0] + 0.5) == 0 && floor(data[1] + 0.5) == 0)
+        if(floor(data[1] + 0.5) == 0 && floor(data[0] + 0.5) == 0)
             num_successes++;
         else
             num_failures++;
@@ -222,7 +223,7 @@ int main(int argc,char **argv)
         NNet2.FeedForward(data);
         NNet2.GetOutputValues(data);
         
-        if(floor(data[0] + 0.5) == 1 && floor(data[1] + 0.5) == 0)
+        if(floor(data[1] + 0.5) == 0 && floor(data[0] + 0.5) == 1)
             num_successes++;
         else
             num_failures++;
@@ -242,7 +243,7 @@ int main(int argc,char **argv)
         NNet2.FeedForward(data);
         NNet2.GetOutputValues(data);
         
-        if(floor(data[0] + 0.5) == 0 && floor(data[1] + 0.5) == 1)
+        if(floor(data[1] + 0.5) == 1 && floor(data[0] + 0.5) == 0)
             num_successes++;
         else
             num_failures++;
@@ -262,7 +263,7 @@ int main(int argc,char **argv)
         NNet2.FeedForward(data);
         NNet2.GetOutputValues(data);
         
-        if(floor(data[0] + 0.5) == 1 && floor(data[1] + 0.5) == 1)
+        if(floor(data[1] + 0.5) == 1 && floor(data[0] + 0.5) == 1)
             num_successes++;
         else
             num_failures++;
