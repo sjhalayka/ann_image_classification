@@ -2,14 +2,13 @@
 
 
 #include <stdexcept>
-using std::bad_alloc;
 using std::out_of_range;
 
 
 WeightedNeuron::WeightedNeuron(const size_t &src_num_inputs)
 {
 	if(src_num_inputs == 0)
-        throw bad_alloc();//("Invalid number of inputs.");
+        throw out_of_range("Invalid number of inputs.");
 
 	weights.resize(src_num_inputs);
 	previous_weight_adjustments.resize(src_num_inputs, 0.0);
@@ -28,7 +27,7 @@ size_t WeightedNeuron::GetNumInputs(void) const
 void WeightedNeuron::ResetNumInputs(const size_t &src_num_inputs)
 {
 	if(src_num_inputs == 0)
-        throw bad_alloc();//("Invalid number of inputs.");
+        out_of_range("Invalid number of inputs.");
 
 	size_t temp_weights_size = weights.size();
 
