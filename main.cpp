@@ -36,7 +36,7 @@ int main(int argc,char **argv)
     statue_img.load("statue.tga");
     
     vector<size_t> HiddenLayers;
-    HiddenLayers.push_back(sqrt(image_width*image_height*bytes_per_pixel*output_bits));
+        HiddenLayers.push_back(sqrt(image_width*image_height*bytes_per_pixel*output_bits));
 
     FFBPNeuralNet NNet(image_width*image_height*bytes_per_pixel, HiddenLayers, output_bits);
     
