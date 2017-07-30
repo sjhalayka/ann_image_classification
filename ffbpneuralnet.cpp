@@ -730,7 +730,7 @@ void FFBPNeuralNet::LoadFromFile(const char *const filename)
 
 			OutputLayer[i].SetWeight(j, temp_double);
 
-			// read previous weight adjustment
+			// read previous weight adjustmentd
 			in.read((char *)&temp_double, sizeof(double));
 			if(in.fail() || in.eof())
 				throw runtime_error("Error reading from file.");
@@ -757,7 +757,7 @@ void FFBPNeuralNet::LoadFromFile(const char *const filename)
 void FFBPNeuralNet::RandomizeWeights(void)
 {
 	for(size_t i = 0; i < HiddenLayers.size(); i++)
-		for(size_t j = 0; j < HiddenLayers[i].size(); i++)
+		for(size_t j = 0; j < HiddenLayers[i].size(); j++)
 			HiddenLayers[i][j].RandomizeWeights();
 
 	for(size_t i = 0; i < OutputLayer.size(); i++)
