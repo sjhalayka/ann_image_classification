@@ -15,6 +15,10 @@ using std::ios;
 using std::out_of_range;
 using std::runtime_error;
 
+#include <iostream>
+using std::cout;
+using std::endl;
+
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
@@ -72,6 +76,8 @@ FFBPNeuralNet::FFBPNeuralNet(const size_t &src_num_input_neurons, const vector<s
 	// change them to something other than 1.0 to "enable" them
     learning_rate = 1.0;    // 0.25 might be a good value
     momentum = 1.0; // 0.5 might be a good value
+    
+    RandomizeWeights();
 }
 
 FFBPNeuralNet::FFBPNeuralNet(const char *const src_filename)
@@ -756,6 +762,8 @@ void FFBPNeuralNet::LoadFromFile(const char *const filename)
 
 void FFBPNeuralNet::RandomizeWeights(void)
 {
+    cout << "Randomize weights" << endl;
+    
 	for(size_t i = 0; i < HiddenLayers.size(); i++)
 		for(size_t j = 0; j < HiddenLayers[i].size(); j++)
 			HiddenLayers[i][j].RandomizeWeights();
