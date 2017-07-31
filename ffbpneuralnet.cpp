@@ -762,9 +762,7 @@ void FFBPNeuralNet::LoadFromFile(const char *const filename)
 
 void FFBPNeuralNet::RandomizeWeights(void)
 {
-    cout << "Randomize weights" << endl;
-    
-	for(size_t i = 0; i < HiddenLayers.size(); i++)
+    for(size_t i = 0; i < HiddenLayers.size(); i++)
 		for(size_t j = 0; j < HiddenLayers[i].size(); j++)
 			HiddenLayers[i][j].RandomizeWeights();
 

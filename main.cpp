@@ -36,12 +36,11 @@ int main(int argc,char **argv)
     statue_img.load("statue.tga");
     
     vector<size_t> HiddenLayers;
-        HiddenLayers.push_back(sqrt(image_width*image_height*bytes_per_pixel*output_bits));
+    HiddenLayers.push_back(sqrt(image_width*image_height*bytes_per_pixel*output_bits));
 
     FFBPNeuralNet NNet(image_width*image_height*bytes_per_pixel, HiddenLayers, output_bits);
     
     NNet.SetLearningRate(0.1);
-    
     
     double max_error_rate = 0.01;
     long unsigned int max_training_sessions = 1000;
@@ -49,7 +48,7 @@ int main(int argc,char **argv)
     double error_rate = 0.0;
     long unsigned int num_training_sessions = 0;
     
- 
+    
     // train network until the error rate goes below the maximum error rate
     // or we reach the maximum number of training sessions (which could be considered as "giving up")
     do
@@ -160,9 +159,11 @@ int main(int argc,char **argv)
     while(error_rate >= max_error_rate && num_training_sessions < max_training_sessions);
     
     NNet.SaveToFile("network.bin");
- 
+
     
     FFBPNeuralNet NNet2("network.bin");
+    
+    
     
     size_t num_tests = 100;
     size_t num_successes = 0;
