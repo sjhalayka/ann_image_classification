@@ -49,8 +49,6 @@ public:
 	void SaveToFile(const char *const filename) const;
 	void LoadFromFile(const char *const filename);
 
-	void RandomizeWeights(void);
-
 protected:
 	vector<double> InputLayer;
 	vector< vector<WeightedNeuron> > HiddenLayers;

@@ -70,14 +70,8 @@ FFBPNeuralNet::FFBPNeuralNet(const size_t &src_num_input_neurons, const vector<s
 	for(size_t i = 0; i < src_num_output_neurons; i++)
 		OutputLayer.push_back(WeightedNeuron(HiddenLayers[HiddenLayers.size()-1].size()));
 
-
-	// default values of 1.0 mean that these coefficients
-	// do not affect any calculations made during the backpropagation process
-	// change them to something other than 1.0 to "enable" them
     learning_rate = 1.0;    // 0.25 might be a good value
     momentum = 1.0; // 0.5 might be a good value
-    
-    RandomizeWeights();
 }
 
 FFBPNeuralNet::FFBPNeuralNet(const char *const src_filename)
@@ -758,14 +752,4 @@ void FFBPNeuralNet::LoadFromFile(const char *const filename)
 
 		OutputLayer[i].SetBiasWeight(temp_double);
 	}
-}
-
-void FFBPNeuralNet::RandomizeWeights(void)
-{
-    for(size_t i = 0; i < HiddenLayers.size(); i++)
-		for(size_t j = 0; j < HiddenLayers[i].size(); j++)
-			HiddenLayers[i][j].RandomizeWeights();
-
-	for(size_t i = 0; i < OutputLayer.size(); i++)
-		OutputLayer[i].RandomizeWeights();
 }
