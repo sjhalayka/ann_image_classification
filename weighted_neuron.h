@@ -47,7 +47,8 @@ public:
 		// get value from -1.0 to 1.0
 		return (static_cast<double>(rand()%2001) / 1000.0) - 1.0;
 	}
-
+    
+protected:
 	double bias_weight, bias;
 	vector<double> weights;
 	vector<double> previous_weight_adjustments;
