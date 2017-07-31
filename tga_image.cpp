@@ -139,14 +139,13 @@ void tga_32bit_image::load(const char *const filename)
 
 void tga_32bit_image::add_colour_noise(double scale)
 {
-    
     for(size_t i = 0; i < pixels.size(); i++)
     {
-        unsigned char noise = rand()%255;
+        unsigned char noise = rand()%256;
         pixels[i].r = (pixels[i].r + noise*scale) / (1.0 + scale);
-        noise = rand()%255;
+        noise = rand()%256;
         pixels[i].g = (pixels[i].g + noise*scale) / (1.0 + scale);
-        noise = rand()%255;
+        noise = rand()%256;
         pixels[i].b = (pixels[i].b + noise*scale) / (1.0 + scale);
     }
 }
