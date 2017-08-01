@@ -122,7 +122,7 @@ double WeightedNeuron::GetBias(void) const
 void WeightedNeuron::RandomizeWeights(void)
 {
 	for(vector<double>::iterator i = weights.begin(); i != weights.end(); i++)
-		*i = GetRandWeight();
+		*i = GetRandWeight();  // from -1.0 to 1.0
 
 	bias_weight = GetRandWeight();
 }
@@ -132,13 +132,9 @@ void WeightedNeuron::PerturbWeights(const double scale)
     double noise = 0;
     
     for(vector<double>::iterator i = weights.begin(); i != weights.end(); i++)
-    {
-        noise = GetRandWeight();
-        *i = (*i + noise*scale) / (1.0 + scale);
-    }
+        *i += GetRandWeight()*scale;
 
-    noise = GetRandWeight();
-    bias_weight = (bias_weight + noise*scale) / (1.0 + scale);
+    bias_weight += GetRandWeight()*scale;
 }
 
 
