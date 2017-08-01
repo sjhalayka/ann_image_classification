@@ -25,7 +25,8 @@ public:
 	void SetBias(const double &src_bias);
 	double GetBias(void) const;
 	void RandomizeWeights(void);
-
+    void PerturbWeights(const double scale);
+    
 	// logistic function
 	static inline double ActivationFunction(const double &x)
 	{

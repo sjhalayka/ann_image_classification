@@ -126,3 +126,21 @@ void WeightedNeuron::RandomizeWeights(void)
 
 	bias_weight = GetRandWeight();
 }
+
+void WeightedNeuron::PerturbWeights(const double scale)
+{
+    double noise = 0;
+    
+    for(vector<double>::iterator i = weights.begin(); i != weights.end(); i++)
+    {
+        noise = GetRandWeight();
+        *i = (*i + noise*scale) / (1.0 + scale);
+    }
+
+    noise = GetRandWeight();
+    bias_weight = (bias_weight + noise*scale) / (1.0 + scale);
+}
+
+
+
+
