@@ -129,8 +129,6 @@ void WeightedNeuron::RandomizeWeights(void)
 
 void WeightedNeuron::PerturbWeights(const double scale)
 {
-    double noise = 0;
-    
     for(vector<double>::iterator i = weights.begin(); i != weights.end(); i++)
         *i += GetRandWeight()*scale;
 
