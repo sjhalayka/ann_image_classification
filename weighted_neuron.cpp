@@ -27,7 +27,7 @@ size_t WeightedNeuron::GetNumInputs(void) const
 void WeightedNeuron::ResetNumInputs(const size_t &src_num_inputs)
 {
 	if(src_num_inputs == 0)
-        out_of_range("Invalid number of inputs.");
+        throw out_of_range("Invalid number of inputs.");
 
 	size_t temp_weights_size = weights.size();
 
